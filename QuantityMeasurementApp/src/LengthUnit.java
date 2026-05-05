@@ -1,18 +1,20 @@
+package model;
+
 public enum LengthUnit implements IMeasurable {
     FEET(1.0),
     INCHES(1.0 / 12.0);
 
-    private final double factor;
+    private final double toFeet;
 
-    LengthUnit(double factor) {
-        this.factor = factor;
+    LengthUnit(double toFeet) {
+        this.toFeet = toFeet;
     }
 
-    public double getConversionFactor() {
-        return factor;
+    public double toBaseUnit(double value) {
+        return value * toFeet;
     }
 
-    public String getUnitName() {
-        return this.name();
+    public double fromBaseUnit(double baseValue) {
+        return baseValue / toFeet;
     }
 }
